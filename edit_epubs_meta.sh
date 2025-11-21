@@ -111,6 +111,32 @@ function bulk_change_title() {
     done
 }
 
+function bulk_change_author() {
+    local new_names="$1"
+
+    # Left-shift parameters
+    shift 
+
+    for file in "$@"; do
+        echo
+        print_separator
+        echo "Book: $file"
+        print_separator
+
+        echo "Original:"
+        ebook-meta "$file" | grep -i "author"
+
+        # Update author names
+        ebook-meta "$file" -a "$new_names" >/dev/null
+
+        echo
+        echo "Updated:"
+        ebook-meta "$file" | grep -i "author"
+        echo
+    done
+}
+
+
 # --------------------------------------
 # Displays the main menu and prompts for user input.
 # @param $1 — Optional: flag indicating previous invalid input (1 = invalid)
@@ -151,9 +177,10 @@ function bulk_edit_menu_prompt() {
 
     echo "Bulk Editing Options:" >&2
     print_separator >&2
-    echo "  1. Bulk edit Titles" >&2
+    echo "  1. Bulk edit Titles + Title Sort" >&2
     echo "  2. Bulk edit Series + Index" >&2
-    echo "  3. Return to main menu" >&2
+    echo "  3. Bulk edit Author(s)" >&2
+    echo "  4. Return to main menu" >&2
     echo >&2
 
     echo -n "Enter your choice [1-3]: " >&2
@@ -248,6 +275,18 @@ until [[ "$choice" == "4" ]]; do
                         ;;
 
                     3)
+                        echo
+                        echo "Enter author name in order: FirstName LastName."
+                        echo "If Entering multiple authors, please separate each author using '&'.\nEg: Dave Joe & Bob Marley\n"
+                        
+                        echo -n "Enter name(s) of Author(s): "
+                        read -r author_names
+                        bulk_change_author "$author_names" "${files[@]}"
+
+                        pause_till_user_interrupts
+                        ;;
+
+                    4)
                         break
                         ;;
 
