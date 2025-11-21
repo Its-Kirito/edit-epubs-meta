@@ -2,7 +2,7 @@
 
 ### A simple Zsh tool for bulk editing EPUB metadata and filenames
 
-*Version 1.0 — by Edward (Kirito)*
+*Version 1.1 — by Edward (Kirito)*
 
 ---
 
@@ -14,6 +14,7 @@ It was originally built to help organize **light novel collections** (especially
 
 * consistent filenames
 * consistent titles
+* consistent author(s)
 * correct series metadata
 * correct series indices
 
@@ -78,10 +79,11 @@ epubmeta
 
 ---
 
-## ✨ Features (v1.0)
+## ✨ Features (v1.1)
 
 ✔️ Bulk edit **Title** and **Title-Sort** using a base title\
 ✔️ Bulk edit **Series** name and auto-assign **Series Index**\
+✔️ Bulk edit **Author(s)**\
 ✔️ Bulk rename EPUB filenames using volume numbers\
 ✔️ Displays useful metadata for inspection\
 ✔️ Simple CLI menus\
