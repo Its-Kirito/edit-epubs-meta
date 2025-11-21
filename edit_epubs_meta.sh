@@ -3,7 +3,7 @@
 # Name: edit_epubs_meta
 # Description: Bulk metadata editing and renaming for EPUB files.
 # Author: Edward (Kirito)
-# Version: 1.0
+# Version: 1.1
 # --------------------------------------
 
 
@@ -111,6 +111,12 @@ function bulk_change_title() {
     done
 }
 
+# --------------------------------------
+# Updates Author(s) metadata for EPUB files.
+# 
+# @param $1  — Name of Author(s)
+# @param $@ - EPUB file list (after shift)
+# --------------------------------------
 function bulk_change_author() {
     local new_names="$1"
 
@@ -135,7 +141,6 @@ function bulk_change_author() {
         echo
     done
 }
-
 
 # --------------------------------------
 # Displays the main menu and prompts for user input.
